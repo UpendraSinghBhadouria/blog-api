@@ -80,14 +80,3 @@ export const logout = async (token: string) => {
     throw new UnauthorizedError("Refresh Token is missing");
   }
 };
-
-export const getMe = async (id: string) => {
-  const user = users.find((user) => user._id === id);
-
-  if (!user) {
-    throw new NotFoundError("User not exists for this email");
-  }
-
-  const { password, ...userWithoutPassword } = user;
-  return { user: userWithoutPassword };
-};
