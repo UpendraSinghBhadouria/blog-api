@@ -102,18 +102,3 @@ export const logout = async (
     next(error);
   }
 };
-
-export const me = async (req: Request, res: Response, next: NextFunction) => {
-  try {
-    const userId = req.user.id;
-    const { user } = await authService.getMe(userId);
-
-    res.status(200).json({
-      success: true,
-      message: "User data fetched successfully",
-      user,
-    });
-  } catch (error) {
-    next(error);
-  }
-};

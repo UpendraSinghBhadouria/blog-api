@@ -1,1 +1,1 @@
-export { router as AuthRoutes } from "./auth.routes.ts";
+export { router as authRoutes } from "./auth.routes.ts";
