@@ -6,17 +6,17 @@ interface Details {
 interface AppErrorOptions {
   status: number;
   code: string;
-  details?: Details[];
+  details?: Details[] | undefined;
 }
 
 export class AppError extends Error {
   public readonly status: number;
   public readonly code: string;
-  public readonly details: Details[];
+  public readonly details?: Details[] | undefined;
 
   constructor(
     message: string,
-    { status = 500, code = "INTERNAL_ERROR", details = [] }: AppErrorOptions,
+    { status = 500, code = "INTERNAL_ERROR", details }: AppErrorOptions,
   ) {
     super(message);
     this.name = this.constructor.name;
@@ -27,7 +27,7 @@ export class AppError extends Error {
 }
 
 export class BadRequestError extends AppError {
-  constructor(message = "Bad Request", details: Details[] = []) {
+  constructor(message = "Bad Request", details?: Details[]) {
     super(message, {
       status: 400,
       code: "BAD_REQUEST",
@@ -37,7 +37,7 @@ export class BadRequestError extends AppError {
 }
 
 export class UnauthorizedError extends AppError {
-  constructor(message = "Authentication is required", details: Details[] = []) {
+  constructor(message = "Authentication is required", details?: Details[]) {
     super(message, {
       status: 401,
       code: "UNAUTHORIZED",
@@ -49,7 +49,7 @@ export class UnauthorizedError extends AppError {
 export class ForbiddenError extends AppError {
   constructor(
     message = "You do not have permission to perform this action",
-    details: Details[] = [],
+    details?: Details[],
   ) {
     super(message, {
       status: 403,
@@ -60,7 +60,7 @@ export class ForbiddenError extends AppError {
 }
 
 export class NotFoundError extends AppError {
-  constructor(message = "Resource not found", details: Details[] = []) {
+  constructor(message = "Resource not found", details?: Details[]) {
     super(message, {
       status: 404,
       code: "NOT_FOUND",
@@ -70,7 +70,7 @@ export class NotFoundError extends AppError {
 }
 
 export class ConflictError extends AppError {
-  constructor(message = "Resource conflict", details: Details[] = []) {
+  constructor(message = "Resource conflict", details?: Details[]) {
     super(message, {
       status: 409,
       code: "CONFLICT",
@@ -80,7 +80,7 @@ export class ConflictError extends AppError {
 }
 
 export class ValidationError extends AppError {
-  constructor(message = "Validation failed", details: Details[] = []) {
+  constructor(message = "Validation failed", details?: Details[]) {
     super(message, {
       status: 422,
       code: "VALIDATION_ERROR",
@@ -90,7 +90,7 @@ export class ValidationError extends AppError {
 }
 
 export class TooManyRequestsError extends AppError {
-  constructor(message = "Too many requests", details: Details[] = []) {
+  constructor(message = "Too many requests", details?: Details[]) {
     super(message, {
       status: 429,
       code: "TOO_MANY_REQUESTS",
@@ -100,7 +100,7 @@ export class TooManyRequestsError extends AppError {
 }
 
 export class BadGatewayError extends AppError {
-  constructor(message = "Bad gateway", details: Details[] = []) {
+  constructor(message = "Bad gateway", details?: Details[]) {
     super(message, {
       status: 502,
       code: "BAD_GATEWAY",
@@ -112,7 +112,7 @@ export class BadGatewayError extends AppError {
 export class ServiceUnavailableError extends AppError {
   constructor(
     message = "Service temporarily unavailable",
-    details: Details[] = [],
+    details?: Details[],
   ) {
     super(message, {
       status: 503,
