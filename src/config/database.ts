@@ -31,8 +31,8 @@ export const users = [
   },
   {
     _id: "665000000000000000000005",
-    name: "Arjun Mehta",
-    email: "arjun.mehta@example.com",
+    name: "Upendra Singh",
+    email: "upendra@gmail.com",
     password: await bcrypt.hash("12345678", 10),
     role: "admin",
   },
