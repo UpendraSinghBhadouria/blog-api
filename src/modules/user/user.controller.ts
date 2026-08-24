@@ -48,6 +48,7 @@ export const fetchUserById = async (
 
     res.status(200).json({
       success: true,
+      message: "User fetched successfully",
       user,
     });
   } catch (error) {
@@ -67,6 +68,7 @@ export const fetchUserPosts = async (
 
     res.status(200).json({
       success: true,
+      message: "Posts fetched successfully",
       posts,
     });
   } catch (error) {
