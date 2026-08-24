@@ -6,6 +6,7 @@ import { errorMiddleware } from "./middlewares/error.middleware.ts";
 import { authRoutes } from "./modules/auth/auth.module.ts";
 import cookieParser from "cookie-parser";
 import { userRoutes } from "./modules/user/user.module.ts";
+import { postRoutes } from "./modules/post/post.module.ts";
 
 const app = express();
 config();
@@ -19,6 +20,7 @@ app.get("/health-check", (_: Request, res: Response) => {
 });
 app.use("/api/auth", authRoutes);
 app.use("/api/users", userRoutes);
+app.use("/api/posts", postRoutes);
 
 app.use(errorMiddleware); // at last after all the routes
 const PORT = process.env.PORT ?? 3002;
